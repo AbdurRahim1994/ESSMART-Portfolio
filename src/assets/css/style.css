@@ -1,0 +1,585 @@
+/* 2. Design & Animation: CSS Variables for Dark/Light Theme */
+:root {
+    --color-bg-dark: #0F172A; /* Deep Slate */
+    --color-text-dark: #CBD5E1; /* Light Grey/Slate */
+    --color-card-dark: rgba(24, 39, 64, 0.6); /* Semi-transparent Glass */
+    --color-accent: #5b8d15;
+    --color-accent-2:#3B82F6; /* Vibrant Blue. Default by Gemini */
+    --color-accent-3:#520312;
+    --color-accent-hover: #1D4ED8;
+    --color-bg-light: #FFFFFF; /* Default by Gemini */
+    --color-bg-light-2 : #FAF8F6; /* Rabbil Vai Project */
+    --color-text-light: #334155;
+    --color-card-light: rgba(240, 244, 250, 0.7);
+    --color-shadow: rgba(0, 0, 0, 0.2);
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+    --color-secondary:#520312;
+    --color-golden-font:#FFF987;
+    --color-light-secondary:#B0EACD;
+    --color-light-background:#FAF8F6;
+
+    /* Default Theme is Dark */
+    --color-bg: var(--color-bg-dark);
+    --color-text: var(--color-text-dark);
+    --color-card: var(--color-card-dark);
+    --color-border: var(--color-glass-border);
+}
+
+/* Light Theme Configuration */
+.light-theme {
+    --color-bg: var(--color-bg-light);
+    --color-text: var(--color-text-light);
+    --color-card: var(--color-card-light);
+    --color-border: rgba(59, 130, 246, 0.1);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background-color: var(--color-bg); */
+    background-color: var(--color-light-background);
+    color: var(--color-bg-dark);
+    transition: background-color 0.4s, color 0.4s;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Utility Classes */
+.text-accent {
+    color: var(--color-accent);
+}
+
+/* Reusable Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: var(--color-accent);
+    color: white;
+    border: 2px solid var(--color-accent);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-accent);
+    color: white;
+}
+
+/* 2. Design & Animation: Glassmorphism Card Style */
+.glass-card {
+    background: var(--color-light-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px 0 var(--color-shadow);
+}
+
+.highlighted-span{
+    font-weight:700;
+}
+
+/* Header & Navigation */
+.header {
+  background: var(--color-light-background);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  box-shadow: 0 2px 10px 0 var(--color-accent);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-bg-dark);
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+  color: var(--color-bg-dark);
+  margin-left: 25px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s;
+}
+
+/* Hover + Active underline animation */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--color-accent);
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+/* Section Styling */
+section {
+    padding: 50px 0 50px;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+/* 3. Essential Sections: Hero Section */
+#home {
+    padding-top: 150px;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text {
+    flex: 2;
+}
+
+.hero-title {
+    font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    color: #682401;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1vw + 1rem, 1.5rem);
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.hero-image-container {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image-placeholder {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: var(--color-card);
+    border: 5px solid var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+.hero-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 3. Essential Sections: About Me */
+.about-photo {
+    flex: 1;
+    max-width: 300px;
+    margin: 0 auto;   
+}
+
+.about-photo .hero-image-placeholder {
+    width: 100%;
+    height: 300px;
+}
+
+.about-text {
+    flex: 2;
+}
+
+.about-text p{
+    text-align: justify;
+}
+
+.badge {
+    padding: 15px 20px;
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* 3. Essential Sections: Skills Visualization (Interactive/Animated) */
+.skill-category h4 {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.skill-list li {
+    list-style: none;
+    padding: 8px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.skill-list li::before {
+    content: '✓';
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* 3. Essential Sections: Work Experience Timeline */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--color-accent);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: white;
+    border: 4px solid var(--color-accent);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+}
+
+.timeline-content h5 {
+    font-size: 1.3rem;
+    color: var(--color-accent);
+}
+
+.timeline-content .responsibilities ul li{
+    list-style: none;
+}
+
+/* 3. Essential Sections: Project Showcase */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px var(--color-shadow);
+    cursor: pointer;
+}
+
+.project-card h4 {
+    color: var(--color-accent);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+#projects-container .description {
+    text-align: justify;
+}
+
+#projects-container > .col-md-4 {
+    display: flex;
+    align-items: stretch;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+}
+
+.project-card > div:first-child {
+    flex: 1 1 auto;
+}
+
+/* Push footer to the bottom of the card */
+.project-card .card-footer {
+    margin-top: auto;
+}
+
+.project-card .description {
+    margin-top: auto;
+}
+
+/* Footer */    
+.footer {
+    padding: 50px 0 0;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-light-secondary);
+    color: #ffffff;
+}
+
+/* .about-widget {
+    text-align: left;
+} */
+
+.about-widget h4, .policy-widget h4, .customer-care h4, .subscription-widget h4 {
+    color: #000000;
+    font-weight: bolder;
+}
+
+.about-widget p, .customer-care p, .subscription-widget p {
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: #000000;
+}
+
+.policy-widget .info {
+    list-style: none;
+    padding: 0;
+}
+
+.customer-care .info {
+    list-style: none;
+    padding: 0;
+}
+
+.policy-widget .info a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.customer-care p {
+    margin: 0;
+}
+
+.follow-us .social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.follow-us ul{
+    display: flex;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.follow-us .social-links li a{
+    text-decoration: none;
+    color: #000000;
+    border-radius: 50%;
+    padding: 8px;
+    background: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sub-footer {
+    padding: 20px 0;
+}
+
+.sub-footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-footer .row p {
+    color: #000000;
+}
+
+/* Scroll to Top Link */
+.scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+
+.scroll-to-top svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* NEW: Feedback Section (Testimonial Carousel) */
+.carousel-item-content {
+    padding: 30px;
+    text-align: center;
+}
+.carousel-image {
+    width: 150px; /* Set a fixed size for the profile image */
+    height: 150px;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 50%; /* Makes the image circular */
+    margin-bottom: 15px;
+    border: 3px solid #fff; /* Optional: A white border for emphasis */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 1. Targeting the standard Bootstrap indicator buttons */
+#infoCarousel .carousel-indicators button {
+    /* This sets the indicator to a square shape initially */
+    width: 12px; 
+    height: 12px;
+    /* Key: Makes the indicator edges completely round */
+    border-radius: 50%; 
+    /* Optional: Change the color/opacity for better visibility if needed */
+    opacity: 0.7; 
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+/* 2. Targeting the active/selected indicator */
+#infoCarousel .carousel-indicators .active {
+    /* Optional: You might want the active circle to be slightly larger */
+    width: 14px; 
+    height: 14px;
+    opacity: 1; /* Full opacity when active */
+}
+
+/* --- KEY CHANGE: Positioning the Controls at the bottom --- */
+/* Move controls to the bottom of the carousel (relative to the content) */
+#infoCarousel .carousel-control-prev,
+#infoCarousel .carousel-control-next {
+    /* Position them relative to the carousel item content height */
+    top: 85%; 
+    /* Make them smaller since they are not next to the large image */
+    width: 3rem; 
+    height: 3rem;
+}
+
+/* Adjust the left/right positioning to ensure they are at the sides */
+#infoCarousel .carousel-control-prev {
+    left: 15px; /* Pull it out slightly */
+}
+#infoCarousel .carousel-control-next {
+    right: 15px; /* Pull it out slightly */
+}
+
+/* Adjust the size of the icon itself */
+#infoCarousel .carousel-control-prev-icon,
+#infoCarousel .carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.carousel-inner .designation{
+    font-weight: 600;
+}
+
+.carousel-item img{
+    object-fit: cover;
+}
+
+
+/* ================================== Media Query Start ==================================== */
+@media screen and (max-width: 600px) {
+    .sub-footer .row {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .scroll-to-top {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    .timeline-item:nth-child(even), .timeline-item:nth-child(odd) {
+        left: 0;
+    }
+    .timeline-item::after, .timeline-item:nth-child(even)::after {
+        left: 22px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .about-widget, .policy-widget, .customer-care, .subscription-widget {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .social-links li a{
+        font-size: 2rem;
+        padding-right: 2rem;
+    }
+}
+/* ================================== Media Query End ==================================== */
