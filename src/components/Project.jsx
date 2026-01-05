@@ -107,7 +107,7 @@ const Project = () => {
                             </div>
 
                             <div className="card-footer d-flex gap-2 justify-content-between mt-3">
-                                <button target="_blank" className="btn btn-secondary btn-sm">Live Demo</button>
+                                <a href='https://aheduglobal.com/' target="_blank" className="btn btn-secondary btn-sm">Live Demo</a>
                                 <button className="btn btn-secondary btn-sm">View Code</button>
                             </div>
                         </div>
